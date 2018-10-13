@@ -1,12 +1,10 @@
 import _ from 'lodash';
 import React, {Component, Fragment} from 'react';
-import { connect } from 'react-redux';
-import { fetchproducts } from '../actions';
-import Product from './Product';
+import CartList from '../containers/CartList';
+import Product from '../containers/Product';
 import ProductDesc from './ProductDesc';
-import CartList from './CartList';
 
-class ProductList extends Component {
+export default class ProductList extends Component {
     componentDidMount() {
         this.props.fetchproducts();
     }
@@ -14,7 +12,7 @@ class ProductList extends Component {
     renderProductList() {
       return _.map(this.props.products, product => {
           return (
-              <Product key={ product.id } data={ product } />
+              <Product key={product.id} data={product} isInCart={this.props.addToCart.indexOf(product.id) !== -1} />
           );
       });
     }
@@ -33,24 +31,12 @@ class ProductList extends Component {
                 { this.renderProductList() }
             </div>
             <div className="col-lg-6">
-                <ProductDesc data={ activeProduct }/>
+                <ProductDesc data={activeProduct}/>
             </div>
             <div className="col-lg-12">
-                <CartList products={ products } addToCart={ addToCart } />
+                <CartList products={products} addToCart={addToCart} />
             </div>
         </Fragment>
     );
   }
 }
-
-function mapStateToProps( state ) {
-    const { products, activeId, addToCart} = state.items;
-
-    return {
-        products,
-        activeId,
-        addToCart
-    }
-}
-
-export default connect(mapStateToProps, {fetchproducts})(ProductList);

@@ -1,51 +1,34 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { activeproduct, addtocart, removefromcart } from '../actions';
 
-class Product extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            disabledBtn: false
-        }
-    }
-
+export default class Product extends Component {
     onMouseOver(id) {
         this.props.activeproduct(id);
     }
 
     onAddToCart(id) {
         this.props.addtocart(id);
-        this.setState({
-            disabledBtn: true
-        })
     }
 
     removeProduct(id) {
         this.props.removefromcart(id);
-        this.setState({
-            disabledBtn: false
-        })
     }
 
-  render() {
-    const { name, id, src } = this.props.data;
-    let btn = '';
+    render() {
+        const { name, id, src } = this.props.data;
+        let isInCart = this.props.isInCart;
+        let btn = '';
 
-    if(this.state.disabledBtn) {
-        btn = <button className="btn btn-danger" onClick={() => this.removeProduct(id)}>Usuń</button>;
-    } else {
-        btn = <button className="btn btn-primary" onClick={() => this.onAddToCart(id)}>Do Koszyka</button>;
+        if(isInCart) {
+            btn = <button className="btn btn-danger" onClick={() => this.removeProduct(id)}>Usuń</button>;
+        } else {
+            btn = <button className="btn btn-primary" onClick={() => this.onAddToCart(id)}>Do Koszyka</button>;
+        }
+
+        return (
+            <div className="col-lg-4" onMouseOver={() => this.onMouseOver(id)}>
+                <img src={src} alt={name} />
+                {btn}
+            </div>
+        );
     }
-
-    return (
-        <div className="col-lg-4" onMouseOver={() => this.onMouseOver(id)}>
-            <img src={src} alt={name} />
-            { btn }
-        </div>
-    );
-  }
 }
-
-export default connect(null, {activeproduct, addtocart, removefromcart})(Product);

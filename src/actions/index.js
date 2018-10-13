@@ -5,6 +5,7 @@ export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 export const ACTIVE_PRODUCT = 'ACTIVE_PRODUCT';
 export const ADDTOCART = 'ADDTOCART';
 export const REMOVEFROMCART = 'REMOVEFROMCART';
+export const REMOVEALLFROMCART = 'REMOVEALLFROMCART';
 
 export function fetchproducts() {
     const dataObj = _.mapKeys(data, "id");
@@ -36,5 +37,12 @@ export function removefromcart(id) {
     return {
         type: REMOVEFROMCART,
         payload: id
+    };
+}
+
+export function removeallfromcart() {
+
+    return {
+        type: REMOVEALLFROMCART,
     };
 }

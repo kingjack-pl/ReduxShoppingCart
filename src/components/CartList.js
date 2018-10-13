@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import CartItem from './CartItem';
 
-class CartList extends Component {
+export default class CartList extends Component {
 
     renderCartItems(cartItems){
         return cartItems.map( (item) => {
@@ -9,6 +9,10 @@ class CartList extends Component {
               <CartItem key={item.id} item={item} />
           )
         })
+    }
+
+    removeAllProduct() {
+        this.props.removeallfromcart();
     }
 
     render(){
@@ -32,10 +36,9 @@ class CartList extends Component {
                 { this.renderCartItems(cartItems) }
                 <div className="col-lg-12 text-right">
                     <p><b>Do zapłaty: {totalPrice} zł</b></p>
+                    <button className="btn btn-primary" onClick={() => this.removeAllProduct()}>Usuń wszystkie produkty</button>
                 </div>
             </div>
         )
     }
 }
-
-export default CartList;

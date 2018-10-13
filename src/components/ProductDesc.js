@@ -11,13 +11,13 @@ class ProductDesc extends Component {
 
         return (
             <div className="productDesc">
-                <img src={ src } />
-                <h3>{ name }</h3>
+                <img src={src} alt={name} />
+                <h3>{name}</h3>
                 <p>
-                    Kategoria: { cat }<br/>
-                    Cena: { price } zł
+                    Kategoria: {cat}<br/>
+                    Cena: {price} zł
                 </p>
-                <p>Opis: { desc }</p>
+                <p>Opis: {desc}</p>
             </div>
         );
     }

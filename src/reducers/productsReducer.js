@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, ACTIVE_PRODUCT, ADDTOCART, REMOVEFROMCART } from '../actions';
+import { FETCH_PRODUCTS, ACTIVE_PRODUCT, ADDTOCART, REMOVEFROMCART, REMOVEALLFROMCART } from '../actions';
 
 const init = {
     products: {},
@@ -27,6 +27,11 @@ export default function (state = init, action) {
             return {
                 ...state,
                 addToCart: state.addToCart.filter(id => id !== action.payload)
+            };
+        case REMOVEALLFROMCART:
+            return {
+                ...state,
+                addToCart: []
             };
         default:
             return state;

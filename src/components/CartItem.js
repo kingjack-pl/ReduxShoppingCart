@@ -14,4 +14,4 @@ class CartItem extends Component {
     }
 }
 
-export default (CartItem);
+export default CartItem;
