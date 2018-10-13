@@ -24,7 +24,7 @@ class ProductList extends Component {
     const activeProduct = products[activeId];
 
     if(!this.props.products) {
-        return <div>Loading...</div>
+        return <div>Ładowanie...</div>;
     }
 
     return (
@@ -34,6 +34,8 @@ class ProductList extends Component {
             </div>
             <div className="col-lg-6">
                 <ProductDesc data={ activeProduct }/>
+            </div>
+            <div className="col-lg-12">
                 <CartList products={ products } addToCart={ addToCart } />
             </div>
         </Fragment>

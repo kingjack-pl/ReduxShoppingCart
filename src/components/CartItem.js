@@ -6,7 +6,7 @@ class CartItem extends Component {
         const { name, price } = this.props.item;
 
         return (
-            <p>
+            <p className="col-lg-2">
                 {name}<br/>
                 {`Cena: ${price} zł`}<br/>
             </p>
