@@ -1,42 +1,43 @@
-import _ from 'lodash';
-import React, {Component, Fragment} from 'react';
-import CartList from '../containers/CartList';
-import Product from '../containers/Product';
-import ProductDesc from './ProductDesc';
+import map from "lodash.map";
+import React, { Component, Fragment } from "react";
+import CartList from "../containers/CartList";
+import Product from "../containers/Product";
+import ProductDesc from "./ProductDesc";
 
 export default class ProductList extends Component {
-    componentDidMount() {
-        this.props.fetchproducts();
-    }
+	componentDidMount() {
+		this.props.fetchProducts();
+	}
 
-    renderProductList() {
-      return _.map(this.props.products, product => {
-          return (
-              <Product key={product.id} data={product} isInCart={this.props.addToCart.indexOf(product.id) !== -1} />
-          );
-      });
-    }
+	render() {
+		const { objProductsList, activeProductId, arrCartItemsId } = this.props;
 
-  render() {
-    const { products, activeId, addToCart } = this.props;
-    const activeProduct = products[activeId];
+		if (!objProductsList) {
+			return <div>Ładowanie...</div>;
+		}
 
-    if(!this.props.products) {
-        return <div>Ładowanie...</div>;
-    }
+		const renderProductList = map(objProductsList, product => (
+			<Product
+				key={product.id}
+				data={product}
+				isInCart={arrCartItemsId.indexOf(product.id) !== -1}
+			/>
+		));
+		const activeProduct = objProductsList[activeProductId];
 
-    return (
-        <Fragment>
-            <div className="col-lg-6">
-                { this.renderProductList() }
-            </div>
-            <div className="col-lg-6">
-                <ProductDesc data={activeProduct}/>
-            </div>
-            <div className="col-lg-12">
-                <CartList products={products} addToCart={addToCart} />
-            </div>
-        </Fragment>
-    );
-  }
+		return (
+			<Fragment>
+				<div className="col-lg-6">{renderProductList}</div>
+				<div className="col-lg-6">
+					<ProductDesc data={activeProduct} />
+				</div>
+				<div className="col-lg-12">
+					<CartList
+						objProductsList={objProductsList}
+						arrCartItemsId={arrCartItemsId}
+					/>
+				</div>
+			</Fragment>
+		);
+	}
 }

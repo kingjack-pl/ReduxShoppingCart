@@ -1,26 +1,22 @@
-import React, {Component} from 'react';
+import React from "react";
 
-class ProductDesc extends Component {
+const ProductDesc = ({ data, data: { src, name, cat, desc, price } = {} }) => {
+	if (!data) {
+		return <div>Ładowanie...</div>;
+	}
 
-    render(){
-        if(!this.props.data){
-            return <div>Ładowanie...</div>;
-        }
-
-        const { src, name, cat, desc, price } = this.props.data;
-
-        return (
-            <div className="productDesc">
-                <img src={src} alt={name} />
-                <h3>{name}</h3>
-                <p>
-                    Kategoria: {cat}<br/>
-                    Cena: {price} zł
-                </p>
-                <p>Opis: {desc}</p>
-            </div>
-        );
-    }
-}
+	return (
+		<div className="productDesc">
+			<img src={src} alt={name} />
+			<h3>{name}</h3>
+			<p>
+				Kategoria: {cat}
+				<br />
+				Cena: {price} zł
+			</p>
+			<p>Opis: {desc}</p>
+		</div>
+	);
+};
 
 export default ProductDesc;

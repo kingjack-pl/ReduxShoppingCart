@@ -1,17 +1,12 @@
-import React, {Component} from 'react';
+import React from "react";
 
-class CartItem extends Component {
-
-    render(){
-        const { name, price } = this.props.item;
-
-        return (
-            <p className="col-lg-2">
-                {name}<br/>
-                {`Cena: ${price} zł`}<br/>
-            </p>
-        )
-    }
-}
+const CartItem = ({ item: { name, price } }) => (
+	<p className="col-lg-2">
+		Model: {name}
+		<br />
+		Cena: {price} zł
+		<br />
+	</p>
+);
 
 export default CartItem;

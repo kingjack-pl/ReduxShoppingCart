@@ -2,14 +2,12 @@
     padding: 30px;
     min-height: 500px;
 }
-
 .cartBox {
     padding: 30px 60px;
 }
 .cartBox .text-right {
     text-align: right;
 }
-
 .productDesc img {
     height: 300px;
     max-width: 100%;

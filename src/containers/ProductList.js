@@ -1,15 +1,10 @@
-import ProductList from '../components/ProductList';
-import { connect } from 'react-redux';
-import { fetchproducts } from '../actions';
+import ProductList from "../components/ProductList";
+import { connect } from "react-redux";
+import { fetchProducts } from "../actions";
 
-function mapStateToProps( state ) {
-    const { products, activeId, addToCart } = state.items;
+const mapStateToProps = ({ items }) => ({ ...items });
 
-    return {
-        products,
-        activeId,
-        addToCart
-    }
-}
-
-export default connect(mapStateToProps, {fetchproducts})(ProductList);
+export default connect(
+	mapStateToProps,
+	{ fetchProducts }
+)(ProductList);
