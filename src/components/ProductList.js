@@ -20,7 +20,7 @@ export default class ProductList extends Component {
 			<Product
 				key={product.id}
 				data={product}
-				isInCart={arrCartItemsId.indexOf(product.id) !== -1}
+				isInCart={arrCartItemsId.includes(product.id)}
 			/>
 		));
 		const activeProduct = objProductsList[activeProductId];
